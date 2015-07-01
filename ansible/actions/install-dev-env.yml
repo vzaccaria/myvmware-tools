@@ -1,0 +1,9 @@
+---
+
+- name: ensure packages are installed
+  action: apt name={{item}} force=yes
+  with_items:
+      - nodejs
+      - vim
+      - apparmor-utils
+      - docker

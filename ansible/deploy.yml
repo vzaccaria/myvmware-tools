@@ -1,0 +1,22 @@
+---
+
+-
+
+  # This playbook considers an Ubuntu 14.04 machine.
+  hosts: deploy-hosts
+
+  sudo: true
+
+  tasks:
+  - include: actions/create-groups.yml
+
+  # Updates package list with the newest NodeJs repo.
+  - shell: curl -sL https://deb.nodesource.com/setup_dev | bash -
+
+  - apt: update_cache=yes
+
+  - include: actions/install-dev-env.yml
+
+  roles:
+    - vim
+    - utilities
