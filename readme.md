@@ -27,8 +27,8 @@ way:
 On the Mac:
 
 ``` shell
-sudo mkdir /Volumes/Ubuntu                                   # Create shared folder
-sshfs zaccaria@172.16.189.143:/home/zaccaria /Volumes/Ubuntu # Dont use sudo!
+mkdir /Volumes/Ubuntu
+sshfs zaccaria@172.16.189.143:/home/zaccaria /Volumes/Ubuntu
 ```
 
 Environment setup
@@ -46,3 +46,8 @@ where:
 -   `-i` specifies the target host(s)
 -   `deploy.yml` is the top level deployment file
 
+Git setup
+---------
+
+    scp ~/.gitconfig zaccaria@172.16.189.143:/home/zaccaria
+    scp ~/.gitignore_global zaccaria@172.16.189.143:/home/zaccaria

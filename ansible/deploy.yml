@@ -20,3 +20,5 @@
   roles:
     - vim
     - utilities
+    - nodejs
+    - docker.ubuntu
