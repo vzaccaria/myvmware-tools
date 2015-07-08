@@ -17,15 +17,21 @@
 
   - include: actions/install-dev-env.yml
 
+  - shell: ln -s /lib/x86_64-linux-gnu/libtinfo.so.5.9 /lib/x86_64-linux-gnu/libtinfo.so
+
+  # TODO: set up PATH in the environment as:
+  # export PATH=$PATH:/opt/ghc/7.10.1/bin:/opt/cabal/1.22/bin
+
   - shell: /opt/cabal/1.22/bin/cabal update
     environment:
            PATH: "{{ ansible_env.PATH }}:/opt/ghc/7.10.1/bin:/opt/cabal/1.22/bin"
            LD_LIBRARY_PATH: "/lib/x86_64-linux-gnu"
 
-  - shell: cabal install clash-ghc
+  - shell: cabal install clash-ghc-5.8
     environment:
            PATH: "{{ ansible_env.PATH }}:/opt/ghc/7.10.1/bin:/opt/cabal/1.22/bin"
            LD_LIBRARY_PATH: "/lib/x86_64-linux-gnu"
+
 
   roles:
     - vim
