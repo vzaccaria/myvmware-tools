@@ -8,5 +8,6 @@
   with_items:
       - nodejs
       - vim
+      - zsh
       - cabal-install-1.22
       - ghc-7.10.1

@@ -5,10 +5,16 @@
   # This playbook considers an Ubuntu 14.04 machine.
   hosts: deploy-hosts
 
+  roles:
+  - vim
+  - utilities
+  - nodejs
+  - docker.ubuntu
+  - dirn.zsh
+            
   sudo: true
 
   tasks:
-  - include: actions/create-groups.yml
 
   # Updates package list with the newest NodeJs repo.
   - shell: curl -sL https://deb.nodesource.com/setup_dev | bash -
@@ -16,6 +22,7 @@
   - apt: update_cache=yes
 
   - include: actions/install-dev-env.yml
+  - include: actions/create-groups.yml
 
   - file: src=/lib/x86_64-linux-gnu/libtinfo.so.5.9 dest=/lib/x86_64-linux-gnu/libtinfo.so state=link owner=root group=root
 
@@ -27,14 +34,9 @@
            PATH: "{{ ansible_env.PATH }}:/opt/ghc/7.10.1/bin:/opt/cabal/1.22/bin"
            LD_LIBRARY_PATH: "/lib/x86_64-linux-gnu"
 
-  - shell: cabal install clash-ghc
+  - shell: cabal install clash-ghc --global
     environment:
            PATH: "{{ ansible_env.PATH }}:/opt/ghc/7.10.1/bin:/opt/cabal/1.22/bin"
            LD_LIBRARY_PATH: "/lib/x86_64-linux-gnu"
 
 
-  roles:
-    - vim
-    - utilities
-    - nodejs
-    - docker.ubuntu

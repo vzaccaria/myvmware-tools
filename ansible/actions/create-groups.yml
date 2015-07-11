@@ -10,4 +10,4 @@
   action: group name=dev system=no
   sudo: yes
 
-- user: name=zaccaria comment="Main development account" groups=dev append=yes
+- user: name=zaccaria shell=/bin/zsh
